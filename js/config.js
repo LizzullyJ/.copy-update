@@ -40,6 +40,7 @@ const invitationConfig = {
     { time: "21:00", endTime: "01:00", endDayOffset: 1, title: "Baile", icon: "music" }
   ],
   dressCode: "Formal elegante",
+  dressColors: "Colores de preferencia: café, beige y verde olivo.",
   dressNote: "Elige ese atuendo con el que te sientas especial. Será un placer celebrar contigo.",
   gifts: {
     title: "Mesa de regalos",
