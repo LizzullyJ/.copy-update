@@ -40,7 +40,7 @@ Abre `http://127.0.0.1:4173`. El servidor solo escucha en tu equipo. Finaliza co
 | `event.location`, `event.scheduleNote` | Lugar general y nota sobre los horarios |
 | `ceremony`, `reception` | Nombre, dirección, horario y URL de cada ubicación |
 | `itinerary` | Horas de inicio, `endTime` opcional, `endDayOffset: 1` para terminar al día siguiente, títulos, descripciones e iconos |
-| `dressCode`, `dressColors`, `dressNote` | Vestimenta, colores de preferencia y nota opcional |
+| `dressCode`, `dressColors`, `dressPalette`, `dressNote` | Vestimenta, título de colores, muestras circulares (`name` y `color` hexadecimal) y nota opcional |
 | `gifts.amazon.url`, `gifts.target.url` | Enlace de compartir de cada lista de regalos |
 | `gifts.title`, `gifts.message`, `gifts.pendingMessage` | Título, mensaje y aviso de listas pendientes |
 | `rsvp.phone` | WhatsApp internacional, solo dígitos |

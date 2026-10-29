@@ -138,7 +138,20 @@
     </section>
 
     <section class="dress-section" aria-labelledby="dress-title">
-      <div class="dress-content section-wrap reveal"><div class="dress-icons" aria-hidden="true"><svg class="icon"><use href="#i-suit"/></svg><svg class="icon"><use href="#i-dress"/></svg></div><div><p class="eyebrow" id="dress-title">Código de vestimenta</p><h2 data-bind="dressCode">Formal elegante</h2><p class="dress-colors" data-bind="dressColors">Colores de preferencia: café, beige y verde olivo.</p></div><p data-bind="dressNote">Elige ese atuendo con el que te sientas especial. Será un placer celebrar contigo.</p></div>
+      <div class="dress-content section-wrap reveal">
+        <div class="dress-icons" aria-hidden="true"><svg class="icon"><use href="#i-suit"/></svg><svg class="icon"><use href="#i-dress"/></svg></div>
+        <div class="dress-details">
+          <p class="eyebrow" id="dress-title">Código de vestimenta</p>
+          <h2 data-bind="dressCode">Formal elegante</h2>
+          <p class="dress-colors" id="dress-palette-label" data-bind="dressColors">Colores de preferencia</p>
+          <ul class="dress-palette" id="dress-palette" role="list" aria-labelledby="dress-palette-label">
+            <li><span class="dress-swatch swatch-brown" aria-hidden="true"></span><span>Café</span></li>
+            <li><span class="dress-swatch swatch-beige" aria-hidden="true"></span><span>Beige</span></li>
+            <li><span class="dress-swatch swatch-olive" aria-hidden="true"></span><span>Verde olivo</span></li>
+          </ul>
+        </div>
+        <p data-bind="dressNote">Elige ese atuendo con el que te sientas especial. Será un placer celebrar contigo.</p>
+      </div>
     </section>
 
     <section class="gifts-section section-wrap section-space" id="regalos" aria-labelledby="gifts-title">

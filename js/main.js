@@ -165,6 +165,26 @@
       } catch { node.textContent = "Horario por confirmar"; }
     }
     renderTimeline();
+    renderDressPalette();
+  }
+
+  function renderDressPalette() {
+    const list = $("#dress-palette");
+    if (!list || !Array.isArray(config.dressPalette)) return;
+    const fragment = document.createDocumentFragment();
+    for (const color of config.dressPalette) {
+      if (!color || !/^#[0-9a-f]{6}$/i.test(String(color.color))) continue;
+      const item = document.createElement("li");
+      const swatch = document.createElement("span");
+      swatch.className = "dress-swatch";
+      swatch.setAttribute("aria-hidden", "true");
+      swatch.style.setProperty("--swatch-color", color.color);
+      const label = document.createElement("span");
+      label.textContent = String(color.name || "");
+      item.append(swatch, label);
+      fragment.append(item);
+    }
+    list.replaceChildren(fragment);
   }
 
   function renderTimeline() {

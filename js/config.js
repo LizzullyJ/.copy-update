@@ -40,7 +40,12 @@ const invitationConfig = {
     { time: "21:00", endTime: "01:00", endDayOffset: 1, title: "Baile", icon: "music" }
   ],
   dressCode: "Formal elegante",
-  dressColors: "Colores de preferencia: café, beige y verde olivo.",
+  dressColors: "Colores de preferencia",
+  dressPalette: [
+    { name: "Café", color: "#795B44" },
+    { name: "Beige", color: "#D8C5AA" },
+    { name: "Verde olivo", color: "#6B7654" }
+  ],
   dressNote: "Elige ese atuendo con el que te sientas especial. Será un placer celebrar contigo.",
   gifts: {
     title: "Mesa de regalos",
