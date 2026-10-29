@@ -44,6 +44,29 @@
     return { hour: Number(match[1]), minute: Number(match[2]) };
   }
 
+  function clockParts(time) {
+    const { hour, minute } = parseTime(time);
+    return { clock: `${hour % 12 || 12}:${pad(minute)}`, period: hour < 12 ? "a. m." : "p. m." };
+  }
+
+  function formatClock(time) {
+    const { clock, period } = clockParts(time);
+    return `${clock} ${period}`;
+  }
+
+  function renderClock(node, time) {
+    const { clock, period } = clockParts(time);
+    const suffix = document.createElement("span");
+    suffix.textContent = period;
+    node.replaceChildren(document.createTextNode(`${clock} `), suffix);
+    node.dateTime = time;
+  }
+
+  function scheduleTime(item) {
+    const start = formatClock(item.time);
+    return item.endTime ? `${start} a ${formatClock(item.endTime)}${item.endDayOffset ? " del día siguiente" : ""}` : start;
+  }
+
   // Convierte una hora local IANA en un instante; nunca usa la zona del visitante.
   function zonedDateTime(date, time, zone) {
     const { year, month, day } = parseDate(date);
@@ -138,11 +161,7 @@
     for (const kind of ["ceremony", "reception"]) {
       const node = $(`[data-time="${kind}"]`);
       try {
-        parseTime(config[kind].time);
-        const hrs = document.createElement("span");
-        hrs.textContent = "HRS.";
-        node.replaceChildren(document.createTextNode(`${config[kind].time} `), hrs);
-        node.dateTime = config[kind].time;
+        renderClock(node, config[kind].time);
       } catch { node.textContent = "Horario por confirmar"; }
     }
     renderTimeline();
@@ -154,8 +173,8 @@
       const item = document.createElement("li");
       item.className = "timeline-item reveal";
       const time = document.createElement("time");
-      time.textContent = String(event.time);
-      try { parseTime(event.time); time.dateTime = event.time; } catch { /* Conservar texto seguro. */ }
+      time.className = "timeline-clock";
+      try { renderClock(time, event.time); } catch { time.textContent = String(event.time); }
       const icon = document.createElement("span");
       icon.className = "timeline-icon";
       icon.append(makeIcon(event.icon));
@@ -163,7 +182,11 @@
       const title = document.createElement("h3");
       title.textContent = String(event.title);
       const description = document.createElement("p");
-      description.textContent = String(event.description || "");
+      let range = "";
+      if (event.endTime) {
+        try { range = `${scheduleTime(event)}.`; } catch { /* Conservar la descripción sin un rango inválido. */ }
+      }
+      description.textContent = [event.description, range].filter(Boolean).join(" ");
       details.append(title, description);
       item.append(time, icon, details);
       fragment.append(item);
@@ -315,7 +338,13 @@
     const duration = Number(config.event.durationHours);
     const eventEnd = new Date(eventStart.getTime() + (Number.isFinite(duration) && duration > 0 ? duration : 7) * 3600000);
     const publicLink = /^https?:$/.test(location.protocol) ? `\n${location.href.split("#")[0]}` : "";
-    return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Invitacion Bodas de Plata//ES", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT", `UID:bodas-plata-${eventStart.getTime()}@invitacion.local`, `DTSTAMP:${stamp(new Date())}`, `DTSTART:${stamp(eventStart)}`, `DTEND:${stamp(eventEnd)}`, `SUMMARY:${escapeICS(`${config.event.title} · ${couple}`)}`, `DESCRIPTION:${escapeICS(`${config.text.heroQuote}\n${config.event.scheduleNote}${publicLink}`)}`, `LOCATION:${escapeICS(config.event.location)}`, "END:VEVENT", "END:VCALENDAR"].map(foldICS).join("\r\n") + "\r\n";
+    const description = [
+      config.event.scheduleNote,
+      `Ceremonia · ${formatClock(config.ceremony.time)} · ${config.ceremony.name}: ${config.ceremony.address}`,
+      `Recepción · ${formatClock(config.reception.time)} · ${config.reception.name}: ${config.reception.address}`,
+      ...(config.itinerary || []).map((item) => `${item.title}: ${scheduleTime(item)}`)
+    ].join("\n") + publicLink;
+    return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Invitacion Bodas de Plata//ES", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT", `UID:bodas-plata-${eventStart.getTime()}@invitacion.local`, `DTSTAMP:${stamp(new Date())}`, `DTSTART:${stamp(eventStart)}`, `DTEND:${stamp(eventEnd)}`, `SUMMARY:${escapeICS(`${config.event.title} · ${couple}`)}`, `DESCRIPTION:${escapeICS(description)}`, `LOCATION:${escapeICS(config.event.location)}`, "END:VEVENT", "END:VCALENDAR"].map(foldICS).join("\r\n") + "\r\n";
   }
 
   function initCalendar() {

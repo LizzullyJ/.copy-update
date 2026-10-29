@@ -18,11 +18,11 @@ Abre `http://127.0.0.1:4173`. El servidor solo escucha en tu equipo. Finaliza co
 
 - **Nombres:** Gaby y Salvador, tomados del nombre del proyecto.
 - **Celebración:** 28 de noviembre de **2026**. El año se asumió por ser la próxima fecha; puede cambiarse.
-- **Hora:** 17:00, propuesta editable, en `America/Mexico_City`.
+- **Horario:** ceremonia a la 1:00 p. m. y recepción a las 5:00 p. m., en hora local de Oklahoma City (`America/Chicago`).
 - **Límite de confirmación:** 14 de noviembre de 2026, fecha sugerida editable.
-- **Iglesia y recepción:** pendientes. Los botones explican que las direcciones se compartirán pronto. Al configurar una URL válida abren Google Maps directamente.
+- **Ceremonia:** Holy Spirit Catholic Church, 1212 N Sara Rd, Mustang, OK 73064. **Recepción:** La Joya Event Center, 3830 N MacArthur Blvd, Warr Acres, OK 73122. Cada botón de Maps usa la dirección proporcionada.
 - **WhatsApp:** pendiente. No se utiliza ningún teléfono ficticio. El formulario prepara y copia el mensaje; no registra ni confirma asistencias. Al configurar un teléfono, el botón abre WhatsApp con ese mensaje.
-- **Itinerario y código de vestimenta:** propuesta editable.
+- **Itinerario:** comida de 6:00 a 8:00 p. m.; baile de 9:00 p. m. a 1:00 a. m. del domingo 29 de noviembre. El calendario abarca desde la ceremonia hasta el cierre del baile.
 - **Mesa de regalos:** Amazon y Target, con enlaces pendientes. Cada botón muestra un aviso de próxima disponibilidad hasta añadir su lista real.
 
 ## Personalizar desde `js/config.js`
@@ -34,12 +34,12 @@ Abre `http://127.0.0.1:4173`. El servidor solo escucha en tu equipo. Finaliza co
 | `event.title` | Título de la invitación |
 | `event.date` | Fecha `AAAA-MM-DD` |
 | `event.time` | Inicio, `HH:MM` en formato de 24 horas |
-| `event.timeZone` | Zona IANA; por defecto `America/Mexico_City` |
+| `event.timeZone` | Zona IANA; `America/Chicago` para Oklahoma City |
 | `event.dateTimeISO` | Opcional: fecha con desplazamiento UTC explícito |
 | `event.durationHours` | Duración para el calendario |
 | `event.location`, `event.scheduleNote` | Lugar general y nota sobre los horarios |
 | `ceremony`, `reception` | Nombre, dirección, horario y URL de cada ubicación |
-| `itinerary` | Horas, títulos, descripciones e iconos de los momentos |
+| `itinerary` | Horas de inicio, `endTime` opcional, `endDayOffset: 1` para terminar al día siguiente, títulos, descripciones e iconos |
 | `dressCode`, `dressNote` | Vestimenta y nota opcional |
 | `gifts.amazon.url`, `gifts.target.url` | Enlace de compartir de cada lista de regalos |
 | `gifts.title`, `gifts.message`, `gifts.pendingMessage` | Título, mensaje y aviso de listas pendientes |
@@ -64,9 +64,9 @@ Si necesitas indicar el desplazamiento manualmente:
 
 ```js
 date: "2026-11-28",
-time: "17:00",
-timeZone: "America/Mexico_City",
-dateTimeISO: "2026-11-28T17:00:00-06:00"
+time: "13:00",
+timeZone: "America/Chicago",
+dateTimeISO: "2026-11-28T13:00:00-06:00"
 ```
 
 **Cuando `dateTimeISO` tiene un valor, tiene prioridad** sobre `date` y `time`, también para la fecha visible. Déjalo vacío si prefieres cambiar únicamente fecha y hora. El archivo de calendario usa UTC para que cada aplicación lo convierta a la zona del invitado. Las fechas inválidas se presentan como pendientes; una hora local inexistente por cambio de horario necesita un desplazamiento explícito. En zonas con horas duplicadas también conviene usar el desplazamiento explícito.

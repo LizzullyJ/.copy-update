@@ -1,5 +1,5 @@
 /* Todos los datos de la invitación se personalizan aquí.
-   Los horarios son una propuesta; las ubicaciones y WhatsApp están pendientes. */
+   Lugares y horarios confirmados para el 28 de noviembre de 2026. */
 const invitationConfig = {
   couple: {
     name1: "Gaby",
@@ -10,33 +10,34 @@ const invitationConfig = {
   event: {
     title: "Nuestras Bodas de Plata",
     date: "2026-11-28",
-    time: "17:00",
-    timeZone: "America/Mexico_City",
-    // Opcional. Déjalo vacío para calcular la fecha con date, time y timeZone.
-    // Ejemplo de instante explícito: "2026-11-28T17:00:00-06:00".
+    time: "13:00",
+    // Oklahoma City usa la zona IANA America/Chicago (hora central).
+    timeZone: "America/Chicago",
+    // Opcional: un instante explícito tiene prioridad sobre date y time.
+    // Ejemplo: "2026-11-28T13:00:00-06:00".
     dateTimeISO: "",
-    durationHours: 7,
-    location: "Ubicaciones por confirmar",
-    scheduleNote: "Horarios propuestos · ubicaciones por confirmar"
+    // De la ceremonia a la 1:00 p. m. al cierre a la 1:00 a. m. del día siguiente.
+    durationHours: 12,
+    location: "Holy Spirit Catholic Church, 1212 N Sara Rd, Mustang, OK 73064",
+    scheduleNote: "Oklahoma City · Todos los horarios son en hora local"
   },
   ceremony: {
-    name: "Un sí, una vez más",
-    address: "Muy pronto compartiremos contigo la iglesia y su dirección.",
-    time: "17:00",
-    mapsUrl: ""
+    name: "Holy Spirit Catholic Church",
+    address: "1212 N Sara Rd, Mustang, OK 73064",
+    time: "13:00",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Holy%20Spirit%20Catholic%20Church%2C%201212%20N%20Sara%20Rd%2C%20Mustang%2C%20OK%2073064"
   },
   reception: {
-    name: "Una noche para recordar",
-    address: "Muy pronto compartiremos contigo el lugar de nuestra celebración.",
-    time: "18:30",
-    mapsUrl: ""
+    name: "La Joya Event Center",
+    address: "3830 N MacArthur Blvd, Warr Acres, OK 73122",
+    time: "17:00",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La%20Joya%20Event%20Center%2C%203830%20N%20MacArthur%20Blvd%2C%20Warr%20Acres%2C%20OK%2073122"
   },
   itinerary: [
-    { time: "17:00", title: "Ceremonia religiosa", description: "Renovamos nuestra promesa de amor.", icon: "church" },
-    { time: "18:30", title: "Recepción y bienvenida", description: "El comienzo de una noche muy especial.", icon: "sparkles" },
-    { time: "19:00", title: "La cena", description: "Compartimos la mesa y los buenos momentos.", icon: "utensils" },
-    { time: "20:00", title: "Brindis por el amor", description: "Por lo vivido y por todo lo que viene.", icon: "glasses" },
-    { time: "21:00", title: "¡A bailar!", description: "Que la música nos regale más recuerdos.", icon: "music" }
+    { time: "13:00", title: "Ceremonia religiosa", description: "Holy Spirit Catholic Church · Mustang, Oklahoma.", icon: "church" },
+    { time: "17:00", title: "Recepción", description: "La Joya Event Center · Warr Acres, Oklahoma.", icon: "sparkles" },
+    { time: "18:00", endTime: "20:00", title: "Comida", icon: "utensils" },
+    { time: "21:00", endTime: "01:00", endDayOffset: 1, title: "Baile", icon: "music" }
   ],
   dressCode: "Formal elegante",
   dressNote: "Elige ese atuendo con el que te sientas especial. Será un placer celebrar contigo.",
