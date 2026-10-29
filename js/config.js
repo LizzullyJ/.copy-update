@@ -39,6 +39,15 @@ const invitationConfig = {
     { time: "18:00", endTime: "20:00", title: "Comida", icon: "utensils" },
     { time: "21:00", endTime: "01:00", endDayOffset: 1, title: "Baile", icon: "music" }
   ],
+  gallery: {
+    eyebrow: "Instantes que se quedan",
+    title: "25 años de recuerdos",
+    message: "Pequeños instantes de una gran historia.",
+    pendingMessage: "Muy pronto compartiremos aquí algunas de nuestras fotografías.",
+    // Cuando tengas las fotos, cópialas a assets/images/ y agrega sus datos.
+    // Ejemplo: { src: "assets/images/boda.jpg", alt: "Nuestra boda", caption: "El comienzo" }
+    photos: []
+  },
   dressCode: "Formal elegante",
   dressColors: "Colores de preferencia",
   dressPalette: [

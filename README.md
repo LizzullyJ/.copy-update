@@ -47,6 +47,28 @@ Abre `http://127.0.0.1:4173`. El servidor solo escucha en tu equipo. Finaliza co
 | `rsvp.deadline` | Fecha límite para confirmar |
 | `rsvp.message` | Plantilla editable del mensaje |
 | `text` | Frases de la portada, historia, cierre y otras secciones |
+| `gallery.photos`, `gallery.title`, `gallery.message`, `gallery.pendingMessage` | Fotografías, título y mensajes de la galería |
+
+### Fotografías
+
+La sección **25 años de recuerdos** aparece después de Nuestra historia y antes de la fecha. Mientras `gallery.photos` esté vacío, muestra cuatro marcos decorativos y un aviso de próxima disponibilidad; no carga imágenes de ejemplo ni presenta fotos ficticias.
+
+Cuando tengas las fotografías:
+
+1. Copia los archivos a `assets/images/` (se recomiendan JPG o WebP optimizados).
+2. Agrega sus rutas y descripciones a `gallery.photos` en `js/config.js`:
+
+```js
+photos: [
+  { src: "assets/images/boda.jpg", alt: "Descripción de la fotografía de nuestra boda", caption: "El comienzo" },
+  { src: "assets/images/aniversario.jpg", alt: "Descripción de la fotografía de nuestro aniversario", caption: "Hoy y siempre" }
+]
+```
+
+Los nombres anteriores son ejemplos: los archivos deben existir antes de añadirlos. La galería reemplaza los marcos vacíos automáticamente al configurar imágenes válidas. Admite fotos locales dentro de `assets/images/` y URLs HTTPS sin credenciales. Si una foto no carga, muestra un aviso en su marco en lugar del icono de imagen rota. Las fotos se cargan al acercarse a la sección y las descripciones no se insertan como HTML.
+
+Puedes cambiar el título, la frase y el aviso pendiente en `gallery.title`, `gallery.message` y `gallery.pendingMessage`. La sección muestra las imágenes sin abrir ventanas adicionales ni simular una carga de archivos. Después de añadirlas, vuelve a publicar la invitación.
+
 
 ### Mesa de regalos de Amazon y Target
 

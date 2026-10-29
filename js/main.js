@@ -17,7 +17,7 @@
   }
 
   function makeIcon(name) {
-    const allowed = ["church", "sparkles", "utensils", "glasses", "music", "heart"];
+    const allowed = ["church", "sparkles", "utensils", "glasses", "music", "heart", "camera"];
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("class", "icon");
     svg.setAttribute("aria-hidden", "true");
@@ -166,6 +166,63 @@
     }
     renderTimeline();
     renderDressPalette();
+    renderGallery();
+  }
+
+  function safeGallerySource(value) {
+    if (typeof value !== "string" || !value.trim()) return null;
+    const source = value.trim();
+    try {
+      if (source.startsWith("assets/images/") && !/[?#\\]/.test(source)) {
+        const decoded = decodeURIComponent(source);
+        if (!decoded.includes("\\") && !decoded.split("/").some((part) => part === ".." || part === ".")) return source;
+        return null;
+      }
+      const url = new URL(source);
+      return url.protocol === "https:" && !url.username && !url.password && !url.port ? url.href : null;
+    } catch { return null; }
+  }
+
+  function renderGallery() {
+    const grid = $("#gallery-grid");
+    if (!grid || !config.gallery) return;
+    const photos = (Array.isArray(config.gallery.photos) ? config.gallery.photos : [])
+      .map((photo) => ({ ...photo, safeSource: safeGallerySource(photo?.src) }))
+      .filter((photo) => photo.safeSource);
+    if (!photos.length) return;
+    const fragment = document.createDocumentFragment();
+    for (const photo of photos) {
+      const card = document.createElement("figure");
+      card.className = "photo-card";
+      const img = document.createElement("img");
+      img.src = photo.safeSource;
+      img.alt = String(photo.alt || photo.caption || ("Fotografía de " + couple));
+      img.width = 800;
+      img.height = 1000;
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.addEventListener("error", () => {
+        const unavailable = document.createElement("div");
+        unavailable.className = "photo-placeholder photo-unavailable";
+        const message = document.createElement("span");
+        message.textContent = "Fotografía no disponible";
+        unavailable.append(makeIcon("camera"), message);
+        img.replaceWith(unavailable);
+      }, { once: true });
+      card.append(img);
+      if (photo.caption) {
+        const caption = document.createElement("figcaption");
+        caption.textContent = String(photo.caption);
+        card.append(caption);
+      }
+      fragment.append(card);
+    }
+    grid.replaceChildren(fragment);
+    grid.removeAttribute("aria-hidden");
+    grid.classList.add("has-photos");
+    grid.classList.toggle("has-single-photo", photos.length === 1);
+    grid.style.setProperty("--photo-columns", String(Math.min(4, photos.length)));
+    $("#gallery-message").textContent = config.gallery.message;
   }
 
   function renderDressPalette() {
