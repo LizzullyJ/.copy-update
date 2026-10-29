@@ -42,8 +42,8 @@ const invitationConfig = {
   dressNote: "Elige ese atuendo con el que te sientas especial. Será un placer celebrar contigo.",
   gifts: {
     title: "Mesa de regalos",
-    message: "Celebrar contigo es lo más importante. Si deseas tener un detalle con nosotros, aquí encontrarás nuestras listas de regalos.",
-    pendingMessage: "Estamos preparando nuestra lista de regalos en {store}. Muy pronto podrás consultarla aquí. ¡Gracias por tu cariño!",
+    message: "Si deseas obsequiarnos un detalle, aquí podrás consultar nuestras listas.",
+    pendingMessage: "Nuestra lista en {store} estará disponible próximamente.",
     // Pega el enlace de compartir de cada lista cuando esté lista.
     // Vacío muestra un aviso de próxima disponibilidad, sin inventar una lista.
     amazon: { name: "Amazon", url: "" },
@@ -54,8 +54,8 @@ const invitationConfig = {
     // No uses un número ficticio. Vacío permite preparar y copiar el mensaje.
     phone: "",
     deadline: "2026-11-14",
-    message: "¡Hola, {couple}! Soy {name}. Me encantará acompañarlos el {date} en sus Bodas de Plata. Confirmo la asistencia de {guests}. ¡Gracias por hacernos parte de su historia!",
-    pendingNote: "Pronto estará disponible nuestro WhatsApp para confirmar. Por ahora, puedes preparar y copiar tu mensaje."
+    message: "¡Hola, {couple}! Soy {name}. Confirmo la asistencia de {guests} a sus Bodas de Plata el {date}.",
+    pendingNote: "WhatsApp estará disponible próximamente. Puedes preparar y copiar tu mensaje."
   },
   text: {
     eyebrow: "Celebrando 25 años de amor",
@@ -69,10 +69,10 @@ const invitationConfig = {
     placesTitle: "Dos momentos. Una celebración.",
     itineraryTitle: "Una noche,\nmuchos recuerdos.",
     itineraryIntro: "Cada momento será más especial si lo compartimos contigo.",
-    rsvpTitle: "Nos hará muy felices\ncontar contigo.",
-    rsvpMessage: "Gracias por ser parte de nuestra historia. Acompáñanos a escribir un nuevo recuerdo.",
-    closingQuote: "El mejor regalo es compartir\neste momento contigo.",
-    closingThanks: "Con todo nuestro cariño, hoy y siempre.",
+    rsvpTitle: "¿Nos acompañas?",
+    rsvpMessage: "Indícanos tu nombre y cuántas personas asistirán para ayudarnos a preparar la recepción.",
+    closingQuote: "Que sigan los años,\nque nunca falte el amor.",
+    closingThanks: "Con amor, siempre.",
     shareTitle: "Gaby & Salvador · Bodas de Plata",
     shareMessage: "Celebramos 25 años de amor. Nos encantará compartir este día contigo."
   }
