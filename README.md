@@ -106,7 +106,7 @@ Mientras no haya teléfono válido, el botón copia el mensaje y explica que la 
 
 Iconos disponibles para `itinerary`: `church`, `sparkles`, `utensils`, `glasses`, `music`, `heart`. Un nombre desconocido muestra un corazón.
 
-Colores y tipografías están en las variables de `css/styles.css`. Las ilustraciones están en `assets/images/olive-branch.svg`; el favicon en `assets/icons/favicon.svg`. No se cargan bibliotecas de iconos ni imágenes externas. Se respeta `prefers-reduced-motion` y se admite navegación por teclado, cierre de diálogos con Escape y retorno al elemento que los abrió.
+Colores y tipografías están en las variables de `css/styles.css`. Las ilustraciones están en `assets/images/`: `olive-branch.svg` para las ramas, `olive-corner.svg` para las esquinas y `olive-divider.svg` para los separadores; el favicon está en `assets/icons/favicon.svg`. Los iconos usan un trazo reforzado en olivo y las tarjetas tienen marcos dorados dobles. No se cargan bibliotecas de iconos ni imágenes externas. Se respeta `prefers-reduced-motion` y se admite navegación por teclado, cierre de diálogos con Escape y retorno al elemento que los abrió.
 
 El título, descripción y metadatos sociales se actualizan desde la configuración al cargar. Antes de compartir en WhatsApp, actualiza también las etiquetas estáticas de `<head>` en `index.html` si cambias nombres o fecha: los rastreadores de enlaces normalmente no ejecutan JavaScript. La opción de compartir necesita un enlace HTTP/HTTPS; desde un archivo local se explica que primero debe publicarse.
 
@@ -129,6 +129,8 @@ css/styles.css
 js/config.js
 js/main.js
 assets/images/olive-branch.svg
+assets/images/olive-corner.svg
+assets/images/olive-divider.svg
 assets/icons/favicon.svg
 scripts/serve.mjs
 scripts/build.mjs
